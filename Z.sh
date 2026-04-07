@@ -1,4 +1,4 @@
-
+#!/bin/bash
 apt-get install -y zoneminder zoneminder-api zoneminder-nginx nginx spawn-fcgi fcgiwrap
 apt-get install MySQL-server
 service mysqld enable
@@ -74,48 +74,3 @@ systemctl enable --now php8.3-fpm
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-cd /etc/zm/      ??????
-
-cat << EOF >>zm.conf
-ZM_DB_HOST=localhost
-ZM_DB_NAME=zm
-ZM_DB_USER=zmuser
-ZM_DB_PASS=zmpass
-EOF
-
-
-
-
-
-cd /etc/sysconfig/
-cat << EOF >> spawn-fcgi
-USERID=apache
-EOF
-sed -i "??s^/#/" /etc/sysconfig/spawn-fcgi
-
-sed -i "//s/^#/" /etc/net/ifaces/ens33/options
